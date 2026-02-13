@@ -17,14 +17,14 @@ tls = true
 [server]
 port = 443
 listen_addr_ipv4 = "0.0.0.0"
-listen_addr_ipv6 = "::"
+# listen_addr_ipv6 = "::"  # Раскомментируйте, если VPS поддерживает IPv6
 
 [[server.listeners]]
 ip = "0.0.0.0"
 # announce_ip = "1.2.3.4"  # Ваш публичный IP, если за NAT
 
-[[server.listeners]]
-ip = "::"
+# [[server.listeners]]   # IPv6 — закомментировано: многие VPS не поддерживают
+# ip = "::"
 
 [timeouts]
 client_handshake = 15
