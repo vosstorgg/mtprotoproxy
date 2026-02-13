@@ -39,10 +39,4 @@ awk -v line="$NEW_LINE" '
 
 echo "✓ Клиент '$CLIENT_ID' добавлен"
 echo ""
-echo "Секрет: $SECRET"
-echo ""
-echo "Ссылки (подставьте ваш IP):"
-echo "  tg://proxy?server=YOUR_IP&port=443&secret=${SECRET}"
-echo "  https://t.me/proxy?server=YOUR_IP&port=443&secret=${SECRET}"
-echo ""
-echo "Или выполните: ./scripts/get-link.sh $CLIENT_ID"
+"$SCRIPT_DIR/get-link.sh" "$CLIENT_ID"

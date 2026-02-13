@@ -93,10 +93,19 @@ firewall-cmd --reload
 docker compose restart
 ```
 
+## Telegram Desktop: «doesn't support this proxy type»
+
+1. **Обновите** Telegram Desktop до последней версии: https://desktop.telegram.org/
+2. Если не помогло — попробуйте классический режим (без Fake TLS):
+   - В `telemt.toml`: `classic = true`, `tls = false`
+   - Перезапуск: `docker compose restart`
+   - Ссылка: `./scripts/get-link.sh --classic company_name`
+
 ## Чеклист перед продакшеном
 
 - [ ] `telemt.toml` создан из `telemt.toml.example`
-- [ ] Домен маскировки в `tls_domain` (по умолчанию `1c.ru`) — популярный HTTPS-сайт
+- [ ] `announce_ip` указан (ваш публичный IP)
+- [ ] chmod +x scripts/*.sh — после git pull
+- [ ] Домен маскировки в `tls_domain` (по умолчанию `1c.ru`)
 - [ ] Добавлен минимум один клиент
 - [ ] Порт 443 открыт в firewall
-- [ ] `announce_ip` указан, если сервер за NAT
