@@ -9,8 +9,9 @@ prefer_ipv6 = false
 fast_mode = true
 use_middle_proxy = false
 
+# classic + tls: один клиент — обе ссылки работают (мобильные и Desktop)
 [general.modes]
-classic = false
+classic = true
 secure = false
 tls = true
 

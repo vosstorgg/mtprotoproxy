@@ -83,10 +83,11 @@ firewall-cmd --reload
 ./scripts/add-client.sh company_name
 ```
 
-### Получить ссылку для клиента
+### Получить ссылки для клиента
 ```bash
 ./scripts/get-link.sh company_name
 ```
+Скрипт выведет обе ссылки: для мобильных (Fake TLS) и для Desktop (классический).
 
 ### Перезапуск после изменения конфига
 ```bash
@@ -96,16 +97,14 @@ docker compose restart
 ## Telegram Desktop: «doesn't support this proxy type»
 
 1. **Обновите** Telegram Desktop до последней версии: https://desktop.telegram.org/
-2. Если не помогло — попробуйте классический режим (без Fake TLS):
-   - В `telemt.toml`: `classic = true`, `tls = false`
-   - Перезапуск: `docker compose restart`
-   - Ссылка: `./scripts/get-link.sh --classic company_name`
+2. Используйте ссылку из блока «Desktop (классический)» — она работает при `classic = true` в конфиге
 
 ## Чеклист перед продакшеном
 
 - [ ] `telemt.toml` создан из `telemt.toml.example`
 - [ ] `announce_ip` указан (ваш публичный IP)
 - [ ] chmod +x scripts/*.sh — после git pull
+- [ ] `classic = true` и `tls = true` — обе ссылки (мобильные + Desktop) работают для одного клиента
 - [ ] Домен маскировки в `tls_domain` (по умолчанию `1c.ru`)
 - [ ] Добавлен минимум один клиент
 - [ ] Порт 443 открыт в firewall
