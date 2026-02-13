@@ -1,0 +1,53 @@
+# MTProxy B2B MVP — шаблон конфигурации
+# Скопируйте в telemt.toml и настройте
+
+# Пользователи, для которых показывать ссылки при старте (можно оставить пустым)
+show_link = []
+
+[general]
+prefer_ipv6 = false
+fast_mode = true
+use_middle_proxy = false
+
+[general.modes]
+classic = false
+secure = false
+tls = true
+
+[server]
+port = 443
+listen_addr_ipv4 = "0.0.0.0"
+listen_addr_ipv6 = "::"
+
+[[server.listeners]]
+ip = "0.0.0.0"
+# announce_ip = "1.2.3.4"  # Ваш публичный IP, если за NAT
+
+[[server.listeners]]
+ip = "::"
+
+[timeouts]
+client_handshake = 15
+tg_connect = 10
+client_keepalive = 60
+client_ack = 300
+
+# Fake TLS — маскировка под популярный HTTPS-сайт (см. Habr: https://habr.com/ru/articles/994934/)
+[censorship]
+tls_domain = "1c.ru"
+mask = true
+mask_port = 443
+fake_cert_len = 2048
+
+[access]
+replay_check_len = 65536
+ignore_time_skew = false
+
+[access.users]
+# Добавляйте клиентов: "company_name" = "32_hex_char_secret"
+# Используйте: ./scripts/add-client.sh company_name
+
+[[upstreams]]
+type = "direct"
+enabled = true
+weight = 10
