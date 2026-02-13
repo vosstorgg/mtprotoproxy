@@ -43,7 +43,7 @@ fi
 # --classic: только 32 hex (для Desktop при ошибке "doesn't support this proxy type")
 TLS_DOMAIN=$(grep -E "tls_domain" "$CONFIG" | grep -v -E "^\s*#" | sed -E 's/.*tls_domain *= *"([^"]+)".*/\1/' | head -1)
 if [ -n "$TLS_DOMAIN" ] && [ "$CLASSIC_MODE" = false ]; then
-  DOMAIN_HEX=$(echo -n "$TLS_DOMAIN" | xxd -p | tr -d '\n')
+  DOMAIN_HEX=$(echo -n "$TLS_DOMAIN" | od -A n -t x1 | tr -d ' \n')
   LEN_HEX=$(printf "%02x" ${#TLS_DOMAIN})
   SECRET="ee${SECRET_32}${LEN_HEX}${DOMAIN_HEX}"
 else

@@ -13,7 +13,7 @@ DOMAIN="$2"
 
 # Формат: ee + 32hex + len(domain) + domain_in_hex
 # domain "1c.ru" = 5 chars = 0x05, hex: 31 63 2e 72 75
-DOMAIN_HEX=$(echo -n "$DOMAIN" | xxd -p | tr -d '\n')
+DOMAIN_HEX=$(echo -n "$DOMAIN" | od -A n -t x1 | tr -d ' \n')
 DOMAIN_LEN=${#DOMAIN}
 LEN_HEX=$(printf "%02x" $DOMAIN_LEN)
 
